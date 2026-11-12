@@ -1,5 +1,6 @@
-# mvp-viver-bem
-MVP para otimização de distribuição de alimentos - Associação Comunitária Viver Bem
+ervidor
+python manage.py migrate
+python manage.py runserver
 # 🌿 MVP-Viver-Bem — Gestão de Estoque (FEFO) e Entregas Comunitárias
 
 Sistema web desenvolvido em **Python** e **Django** para a **Associação Comunitária Viver Bem**, focado no controle inteligente de doações perecíveis, prevenção de desperdício alimentar e rastreabilidade social de entregas.
@@ -20,25 +21,23 @@ Sistema web desenvolvido em **Python** e **Django** para a **Associação Comuni
 - **Backend:** Python 3.10, Django 4.2
 - **Frontend:** HTML5 Semântico, CSS3 (Modo Alto Contraste), JavaScript
 - **Qualidade & Testes:** Pytest, Pytest-Cov, Flake8 (PEP8)
-- **DevOps:** GitHub Actions (CI), Render / Railway (Deploy)
 
 ---
 
 ## 🚀 Como Executar Localmente
 
 ```bash
-# 1. Clonar o repositório
-git clone [https://github.com/JessicaBAlves/mvp-viver-bem.git](https://github.com/JessicaBAlves/mvp-viver-bem.git)
+git clone https://github.com/JessicaBAlves/mvp-viver-bem.git
 cd mvp-viver-bem
-
-# 2. Criar e ativar o ambiente virtual
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-
-# 3. Instalar dependências
+venv\Scripts\activate
 pip install -r requirements.txt
-
-# 4. Executar migrações e iniciar o servidor
 python manage.py migrate
 python manage.py runserver
+```
+
+## ✅ Testes Automatizados
+
+```bash
+pytest -v --cov=.
+```
