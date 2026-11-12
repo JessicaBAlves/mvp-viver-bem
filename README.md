@@ -1,6 +1,4 @@
-ervidor
-python manage.py migrate
-python manage.py runserver
+
 # 🌿 MVP-Viver-Bem — Gestão de Estoque (FEFO) e Entregas Comunitárias
 
 Sistema web desenvolvido em **Python** e **Django** para a **Associação Comunitária Viver Bem**, focado no controle inteligente de doações perecíveis, prevenção de desperdício alimentar e rastreabilidade social de entregas.
