@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVP-Viver-Bem | Gestão de Estoque FEFO e Entregas</title>
+  <style>
+    :root { --bg: #f4f7f6; --card: #ffffff; --text: #1e293b; --primary: #15803d; --border: #cbd5e1; }
+    body.high-contrast { --bg: #000000; --card: #000000; --text: #ffff00; --primary: #ffff00; --border: #ffff00; }
+    body { font-family: Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; transition: 0.2s; }
+    .container { max-width: 960px; margin: auto; }
+    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 15px; margin-bottom: 20px; }
+    .btn { padding: 10px 16px; border: 2px solid var(--primary); background: var(--primary); color: #fff; font-weight: bold; cursor: pointer; border-radius: 6px; }
+    body.high-contrast .btn { color: #000; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+    .badge-critico { background: #dc2626; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+    .badge-ok { background: #16a34a; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+    input { padding: 10px; width: 250px; border: 1px solid var(--border); border-radius: 4px; }
+    .alert { padding: 12px; margin-top: 12px; border-radius: 6px; font-weight: bold; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>🌿 MVP-Viver-Bem</h1>
+        <p>Associação Comunitária Viver Bem — Controle FEFO e Entregas</p>
+      </div>
+      <div>
+        <button class="btn" onclick="document.body.classList.toggle('high-contrast')">🌓 Alto Contraste (WCAG)</button>
+      </div>
+    </header>
+
+    <div class="card">
+      <h2>📦 Inventário Ordenado por Validade (Método FEFO)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Alimento</th>
+            <th>Lote</th>
+            <th>Validade</th>
+            <th>Quantidade</th>
+            <th>Prioridade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Leite Integral UHT</td>
+            <td>LT-2026-01</td>
+            <td>18/11/2026</td>
+            <td>45 L</td>
+            <td><span class="badge-critico">URGENTE (6 dias)</span></td>
+          </tr>
+          <tr>
+            <td>Feijão Carioca Tipo 1</td>
+            <td>LT-2026-04</td>
+            <td>28/11/2026</td>
+            <td>120 kg</td>
+            <td><span class="badge-critico">PRIORITÁRIO (16 dias)</span></td>
+          </tr>
+          <tr>
+            <td>Arroz Branco Tipo 1</td>
+            <td>LT-2026-09</td>
+            <td>15/02/2027</td>
+            <td>300 kg</td>
+            <td><span class="badge-ok">NORMAL</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>🤝 Registrar Entrega de Cesta (Validação por CPF)</h2>
+      <input type="text" id="cpf" placeholder="Digite o CPF (ex: 123.456.789-00)">
+      <button class="btn" onclick="validarEntrega()">Autorizar Entrega</button>
+      <div id="msg" class="alert" role="alert" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script>
+    const entregues = new Set(["111.111.111-11"]);
+    function validarEntrega() {
+      const input = document.getElementById("cpf");
+      const msg = document.getElementById("msg");
+      const cpf = input.value.trim();
+      if (!cpf) return;
+      msg.style.display = "block";
+      if (entregues.has(cpf)) {
+        msg.style.background = "#fee2e2";
+        msg.style.color = "#991b1b";
+        msg.textContent = "⛔ Bloqueado: Beneficiário já recebeu cesta neste mês civil.";
+      } else {
+        entregues.add(cpf);
+        msg.style.background = "#dcfce7";
+        msg.style.color = "#166534";
+        msg.textContent = "✅ Entrega autorizada com sucesso! Registro salvo.";
+        input.value = "";
+        input.focus();
+      }
+    }
+  </script>
+</body>
+</html>
