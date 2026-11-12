@@ -1,0 +1,8 @@
+```text
+Django==4.2.16
+gunicorn==23.0.0
+whitenoise==6.7.0
+pytest==8.3.3
+pytest-django==4.9.0
+pytest-cov==5.0.0
+flake8==7.1.1
